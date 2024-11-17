@@ -94,6 +94,9 @@ const MovieDetails = ({ movie }) => {
       <Link to={`/movie/${movie.id}/recommendations`}>
         <button>View Recommendations</button>
       </Link>
+      <Link to={`/movie/${movie.id}/credits`}>
+        <button>View Credits</button>
+      </Link>
       </>
   );
 };
