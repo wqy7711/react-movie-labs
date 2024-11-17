@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import LanguageIcon from "@mui/icons-material/Language";
+import { Link } from "react-router-dom";
 
 
 const root = {
@@ -90,6 +91,9 @@ const MovieDetails = ({ movie }) => {
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
+      <Link to={`/movie/${movie.id}/recommendations`}>
+        <button>View Recommendations</button>
+      </Link>
       </>
   );
 };
