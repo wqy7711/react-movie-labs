@@ -168,5 +168,42 @@ export const getMovie = (args) => {
         throw error;
       });
   };
+
+  export const getActorDetails = (actorId) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/${actorId}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(error.status_message || "Something went wrong");
+          });
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+  
+  export const getActorMovies = (actorId) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          return response.json().then((error) => {
+            throw new Error(error.status_message || "Something went wrong");
+          });
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+  
+  
+  
   
   
