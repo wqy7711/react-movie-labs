@@ -4,6 +4,7 @@ import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
+import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
 import SortDropdown from "../components/sortDropdown";
 import { sortMovies } from "../util";
 
@@ -31,9 +32,12 @@ const TrendingMoviesPage = () => {
     <PageTemplate
       title="Trending Today"
       movies={sortedMovies}
-      action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />
-      }}
+      action={(movie) => (
+        <>
+          <AddToFavoritesIcon movie={movie} />
+          <AddToMustWatchIcon movie={movie} />
+        </>
+      )}
     />
     </>
   );

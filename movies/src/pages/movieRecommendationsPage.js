@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getMovieRecommendations } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import PageTemplate from "../components/templateMovieListPage";
 import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
+import SortDropdown from "../components/sortDropdown";
+import { sortMovies } from "../util";
 
 const MovieRecommendationsPage = () => {
+  const [sortBy, setSortBy] = useState("");
   const { id } = useParams();
 
   const { data, error, isLoading, isError } = useQuery(
@@ -23,13 +27,22 @@ const MovieRecommendationsPage = () => {
   }
 
   const movies = data.results;
+  const sortedMovies = sortMovies(data.results, sortBy);
 
   return (
+    <>
+    <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
     <PageTemplate
       title="Recommended Movies"
-      movies={movies}
-      action={(movie) => <AddToFavoritesIcon movie={movie} />}
+      movies={sortedMovies}
+      action={(movie) => (
+        <>
+          <AddToFavoritesIcon movie={movie} />
+          <AddToMustWatchIcon movie={movie} />
+        </>
+      )}
     />
+    </>
   );
 };
 
