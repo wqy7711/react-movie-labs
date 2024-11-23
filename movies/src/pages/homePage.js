@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { getMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import SortDropdown from "../components/sortDropdown";
+import { sortMovies } from "../util";
 
 const HomePage = (props) => {
 
+  const [sortBy, setSortBy] = useState("");
   const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
 
   if (isLoading) {
@@ -17,6 +20,7 @@ const HomePage = (props) => {
     return <h1>{error.message}</h1>
   }  
   const movies = data.results;
+  const sortedMovies = sortMovies(data.results, sortBy);
 
   // Redundant, but necessary to avoid app crashing.
   const favorites = movies.filter(m => m.favorite)
@@ -24,13 +28,16 @@ const HomePage = (props) => {
   const addToFavorites = (movieId) => true 
 
   return (
+    <>
+    <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
     <PageTemplate
       title="Discover Movies"
-      movies={movies}
+      movies={sortedMovies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
     />
+    </>
 );
 };
 export default HomePage;

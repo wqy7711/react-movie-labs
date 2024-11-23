@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { getTrendingMovies } from "../api/tmdb-api";
 import PageTemplate from "../components/templateMovieListPage";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
+import SortDropdown from "../components/sortDropdown";
+import { sortMovies } from "../util";
 
 const TrendingMoviesPage = () => {
+  const [sortBy, setSortBy] = useState("");
   const { data, error, isLoading, isError } = useQuery(
     "trendingMovies",
     getTrendingMovies
@@ -20,15 +23,19 @@ const TrendingMoviesPage = () => {
   }
 
   const movies = data.results;
+  const sortedMovies = sortMovies(data.results, sortBy);
 
   return (
+    <>
+    <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
     <PageTemplate
       title="Trending Today"
-      movies={movies}
+      movies={sortedMovies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
     />
+    </>
   );
 };
 

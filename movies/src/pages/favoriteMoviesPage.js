@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
@@ -6,8 +6,11 @@ import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner'
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
+import SortDropdown from "../components/sortDropdown";
+import { sortMovies } from "../util";
 
 const FavoriteMoviesPage = () => {
+  const [sortBy, setSortBy] = useState("");
   const {favorites: movieIds } = useContext(MoviesContext);
 
   // Create an array of queries and run in parallel.
@@ -32,11 +35,14 @@ const FavoriteMoviesPage = () => {
   });
 
   const toDo = () => true;
+  const sortedMovies = sortMovies(movies, sortBy);
 
   return (
+    <>
+    <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
     <PageTemplate
       title="Favorite Movies"
-      movies={movies}
+      movies={sortedMovies}
       action={(movie) => {
         return (
           <>
@@ -46,6 +52,7 @@ const FavoriteMoviesPage = () => {
         );
       }}
     />
+    </>
   );
 };
 
