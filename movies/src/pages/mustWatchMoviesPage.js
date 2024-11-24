@@ -7,6 +7,8 @@ import Spinner from "../components/spinner";
 import RemoveFromMustWatch from "../components/cardIcons/removeFromMustWatch";
 import SortDropdown from "../components/sortDropdown";
 import { sortMovies } from "../util";
+import PaginationWrapper from "../components/paginationWrapper";
+
 
 
 const MustWatchMoviesPage = () => {
@@ -37,13 +39,17 @@ const MustWatchMoviesPage = () => {
   return (
     <>
     <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
+    <PaginationWrapper items={sortedMovies}>
+        {(paginatedMovies) => (
     <PageTemplate
       title="Must Watch Movies"
-      movies={sortedMovies}
+      movies={paginatedMovies}
       action={(movie) => {
         return <RemoveFromMustWatch movie={movie} />;
       }}
     />
+  )}
+      </PaginationWrapper>
     </>
   );
 };

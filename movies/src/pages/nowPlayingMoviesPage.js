@@ -7,6 +7,7 @@ import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
 import SortDropdown from "../components/sortDropdown";
 import { sortMovies } from "../util";
+import PaginationWrapper from "../components/paginationWrapper";
 
 const NowPlayingMoviesPage = () => {
   const [sortBy, setSortBy] = useState("");
@@ -26,9 +27,11 @@ const NowPlayingMoviesPage = () => {
   return (
     <>
     <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
+    <PaginationWrapper items={sortedMovies}>
+        {(paginatedMovies) => (
     <PageTemplate
       title="Now Playing Movies"
-      movies={sortedMovies}
+      movies={paginatedMovies}
       action={(movie) => (
         <>
           <AddToFavoritesIcon movie={movie} />
@@ -36,6 +39,8 @@ const NowPlayingMoviesPage = () => {
         </>
       )}
     />
+  )}
+      </PaginationWrapper>
     </>
   );
 };

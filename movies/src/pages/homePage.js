@@ -7,6 +7,7 @@ import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
 import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
 import SortDropdown from "../components/sortDropdown";
 import { sortMovies } from "../util";
+import PaginationWrapper from "../components/paginationWrapper";
 
 const HomePage = (props) => {
 
@@ -31,9 +32,11 @@ const HomePage = (props) => {
   return (
     <>
     <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
+    <PaginationWrapper items={sortedMovies}>
+        {(paginatedMovies) => (
     <PageTemplate
       title="Discover Movies"
-      movies={sortedMovies}
+      movies={paginatedMovies}
       action={(movie) => (
         <>
           <AddToFavoritesIcon movie={movie} />
@@ -41,6 +44,8 @@ const HomePage = (props) => {
         </>
       )}
     />
+  )}
+      </PaginationWrapper>
     </>
 );
 };

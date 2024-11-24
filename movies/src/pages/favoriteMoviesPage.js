@@ -8,6 +8,7 @@ import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
 import SortDropdown from "../components/sortDropdown";
 import { sortMovies } from "../util";
+import PaginationWrapper from "../components/paginationWrapper"
 
 const FavoriteMoviesPage = () => {
   const [sortBy, setSortBy] = useState("");
@@ -40,18 +41,22 @@ const FavoriteMoviesPage = () => {
   return (
     <>
     <SortDropdown sortBy={sortBy} setSortBy={setSortBy} />
-    <PageTemplate
-      title="Favorite Movies"
-      movies={sortedMovies}
-      action={(movie) => {
-        return (
+    <PaginationWrapper items={sortedMovies}>
+        {(paginatedMovies) => (
+          <PageTemplate
+          title="Favorite Movies"
+          movies={paginatedMovies}
+          action={(movie) => {
+            return (
           <>
-            <RemoveFromFavorites movie={movie} />
-            <WriteReview movie={movie} />
+          <RemoveFromFavorites movie={movie} />
+          <WriteReview movie={movie} />
           </>
         );
       }}
     />
+  )}
+      </PaginationWrapper>
     </>
   );
 };
