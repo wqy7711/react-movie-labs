@@ -43,15 +43,6 @@ const SiteHeader = ({ history }) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
-
-  const handleLogout = async () => {
-    await logout();
-    navigate("/");
-  };
-
   return (
     <>
       <AppBar position="fixed" color="secondary">
@@ -112,9 +103,23 @@ const SiteHeader = ({ history }) => {
               </>
             )}
             {user ? (
-          <button onClick={handleLogout}>Logout</button>
+          <Button
+          variant="contained"
+          color="secondary"
+          onClick={logout}
+          sx={{ borderRadius: "20px", px: 3 }}
+        >
+          Logout
+        </Button>
         ) : (
-          <button onClick={handleLogin}>Login</button>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => navigate("/login")}
+            sx={{ borderRadius: "20px", px: 3 }}
+          >
+            Login
+          </Button>
         )}
             
         </Toolbar>

@@ -11,6 +11,9 @@ import Drawer from "@mui/material/Drawer";
 import MovieReviews from "../movieReviews"
 import LanguageIcon from "@mui/icons-material/Language";
 import { Link } from "react-router-dom";
+import Button from "@mui/material/Button";
+import RecommendationsIcon from "@mui/icons-material/ThumbUp";
+import CastIcon from "@mui/icons-material/Person";
 
 
 const root = {
@@ -92,10 +95,31 @@ const MovieDetails = ({ movie }) => {
         <MovieReviews movie={movie} />
       </Drawer>
       <Link to={`/movie/${movie.id}/recommendations`}>
-        <button>View Recommendations</button>
+      <Button
+          variant="contained"
+          color="primary"
+          startIcon={<RecommendationsIcon />}
+          sx={{
+            marginTop: "1em",
+            marginRight: "1em",
+            borderRadius: "20px",
+          }}
+        >
+          View Recommendations
+        </Button>
       </Link>
       <Link to={`/movie/${movie.id}/credits`}>
-        <button>View Credits</button>
+      <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<CastIcon />}
+          sx={{
+            marginTop: "1em",
+            borderRadius: "20px",
+          }}
+        >
+          View Credits
+        </Button>
       </Link>
       </>
   );
