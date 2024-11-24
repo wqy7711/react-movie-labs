@@ -1,8 +1,25 @@
-# Getting Started with Create React App
+# Assignment 1 - ReactJS app.
+
+Name： QiYi Wang
+
+## Overview.
+
+This repository contains the Movies Fan App, a ReactJS application for browsing and managing movie-related data.  The app provides functionality such as adding movies to favorite or must-watch lists, viewing recommendations, exploring cast details, and managing user authentication.  It integrates The Movie Database (TMDB) API for dynamic content and Firebase Authentication for user management.
+
+### Features.
+
++ Favorite and Must-Watch Management
++ Movie Recommendations and Credits
++ Sorting and Filtering
++ Pagination
++ Movie Reviews
++ Authentication
++ Dynamic Routing
++ Responsive Design
+
+## Setup requirements.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 
@@ -39,32 +56,34 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## API endpoints.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
++ Discover Movies: /discover/movie
++ Movie Details: /movie/:id
++ Genres: /genre/movie/list
++ Upcoming Movies: /movie/upcoming
++ Trending Movies: /trending/movie/day
++ Now Playing Movies: /movie/now_playing
++ Movie Recommendations: /movie/:id/recommendations
++ Movie Credits: /movie/:id/credits
++ Actor Details: /person/:id
++ Actor Movie Credits: /person/:id/movie_credits
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Routing.
 
-### Code Splitting
++ / - Homepage displaying discoverable movies.
++ /login - Login page for user authentication.
++ /register - Registration page for new users.
++ /movies/favorites - Displays favorite movies (protected route).
++ /movies/must_watch - Displays must-watch movies (protected route).
++ /movies/upcoming - Shows a list of upcoming movies​.
++ /movies/trending/today - Displays trending movies for the day.
++ /movies/now_playing - Displays movies currently playing in theaters.
++ /movie/:id - Displays detailed information about a specific movie.
++ /movie/:id/recommendations - Displays movie recommendations for a selected movie.
++ /movie/:id/credits - Shows the cast and crew of the movie.
++ /actor/:id - Displays details about an actor, including movies they are known for.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Independent learning.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+During the development of the Movies App, independent research was conducted to integrate advanced features and improve the user experience.  This included implementing Firebase Authentication for secure user login and registration, utilizing React Query for efficient API data fetching and caching, and leveraging Material-UI for modern, responsive component styling.  Pagination logic was designed for seamless navigation through large datasets, and reusable contexts were created to manage state effectively across the application.  These technologies, along with thorough exploration of online resources and documentation, enhanced the app’s functionality and maintainability .
