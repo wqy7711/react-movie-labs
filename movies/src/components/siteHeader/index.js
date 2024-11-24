@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useAuth } from "../../contexts/authContext";
+
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
@@ -22,6 +24,7 @@ const SiteHeader = ({ history }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const menuOptions = [
     { label: "Home", path: "/" },
@@ -38,6 +41,15 @@ const SiteHeader = ({ history }) => {
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
   };
 
   return (
@@ -99,6 +111,12 @@ const SiteHeader = ({ history }) => {
                 ))}
               </>
             )}
+            {user ? (
+          <button onClick={handleLogout}>Logout</button>
+        ) : (
+          <button onClick={handleLogin}>Login</button>
+        )}
+            
         </Toolbar>
       </AppBar>
       <Offset />

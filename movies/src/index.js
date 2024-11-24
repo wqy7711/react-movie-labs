@@ -17,6 +17,9 @@ import MovieRecommendationsPage from "./pages/movieRecommendationsPage";
 import MovieCreditsPage from "./pages/movieCreditsPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
 import MustWatchMoviesPage from "./pages/mustWatchMoviesPage";
+import AuthProvider from "./contexts/authContext";
+import LoginPage from "./pages/loginPage";
+import RegisterPage from "./pages/registerPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,6 +34,7 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
+    <AuthProvider>
       <BrowserRouter>
         <SiteHeader />
         <MoviesContextProvider>
@@ -48,9 +52,12 @@ const App = () => {
             <Route path="/movie/:id/credits" element={<MovieCreditsPage />} />
             <Route path="/actor/:actorId" element={<ActorDetailsPage />} />
             <Route path="/movies/must_watch" element={<MustWatchMoviesPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </MoviesContextProvider>
       </BrowserRouter>
+      </AuthProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
